@@ -1,8 +1,13 @@
 @extends('AdminView.wrapper')
 
 @section('content')
+<style type="text/css">
+	#info{
+		color:red;
 
-	<section class="content-header">
+	}
+</style>
+<section class="content-header">
 	<h1>
 		Quản lý chuyên mục
 		<small>Manager Type</small>
@@ -45,17 +50,17 @@
 								</td>
 								<td><span data-toggle="tooltip" title="Chỉnh sửa"><button class="btn btn-info option-type" data-id="{{$hometype->id}}" data-toggle="modal" data-target="#modal-option"><i class="fa fa-gear"></i></button></span>
 									<button data-id="{{$hometype->id}}" class="btn btn-warning del-type" ><i class="fa fa-trash"></i></button></td>
-							</tr>
-							@endforeach
+								</tr>
+								@endforeach
 							</tbody>
 							<tfoot>
 								<tr>
-								<th>ID</th>
-								<th>Tên chuyên mục</th>
-								<th>link</th>
-								<th>Ngày tạo</th>
-								<th>Trạng thái</th>
-								<th>Tùy chọn</th>
+									<th>ID</th>
+									<th>Tên chuyên mục</th>
+									<th>link</th>
+									<th>Ngày tạo</th>
+									<th>Trạng thái</th>
+									<th>Tùy chọn</th>
 								</tr>
 							</tfoot>
 						</table>
@@ -77,7 +82,7 @@
 							<h4 class="modal-title">Chỉnh sửa</h4>
 						</div>
 						<div class="modal-body">
-						<input type="hidden" id="id" name="id">
+							<input type="hidden" id="id" name="id">
 							<div class="form-group">
 								<label>Tên chuyên mục</label>
 								<input type="text" class="form-control" name="nametype" id="nametype">
@@ -97,7 +102,7 @@
 								</div>
 							</div>
 
-						{{csrf_field()}}
+							{{csrf_field()}}
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
@@ -110,50 +115,50 @@
 					<!-- /.modal-dialog -->
 				</div>
 			</div>
-			</form>
+		</form>
 
-		<form id="add-form" method="post" action="add-type">
-		<div class="modal fade" id="modal-type">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title">Thêm</h4>
-						</div>
-						<div class="modal-body">
-
-							<div class="form-group">
-								<label>Tên chuyên mục</label>
-								<input type="text" class="form-control" name="nametype">
+		<form id="add-form" method="post" action="">
+			<div class="modal fade" id="modal-type">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title">Thêm</h4>
 							</div>
-							<div class="row">
-								<div class="form-group col-md-12">
-									<label>Trạng thái</label>
-									<select class="form-control" name="status" >
-										<option value="1">Active</option>
-										<option value="2">Block</option>
-									</select>
+							<div class="modal-body">
+								<div id="info"></div>
+								<div class="form-group">
+									<label>Tên chuyên mục</label>
+									<input type="text" class="form-control" name="nametype" id="nametype">
 								</div>
+								<div class="row">
+									<div class="form-group col-md-12">
+										<label>Trạng thái</label>
+										<select class="form-control" name="status" >
+											<option value="1">Active</option>
+											<option value="2">Block</option>
+										</select>
+									</div>
+								</div>
+
+								{{csrf_field()}}
 							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
+								<button type="submit" id="add-type" class="btn btn-primary">Thêm</button>
+							</div>
+						</div>
 
-						{{csrf_field()}}
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary">Save changes</button>
-						</div>
+						<!-- /.modal-content-->
+
+						<!-- /.modal-dialog -->
 					</div>
-
-					<!-- /.modal-content-->
-
-					<!-- /.modal-dialog -->
 				</div>
-			</div>
 			</form>
 
-@endsection
-@section('script')
+			@endsection
+			@section('script')
 			<script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 			<script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 			<script type="text/javascript">
@@ -167,7 +172,6 @@
 							type:'get',
 							url:'option-type/'+id,
 							success:function(resp){
-								console.log(resp.nametype);
 								$('#nametype').val(resp.nametype);
 								$('#nametypelink').val(resp.nametypelink);
 								$('#status').val(resp.status);
@@ -177,33 +181,59 @@
 					});
 
 					$(document).on('click','.del-type',function(){
-						var kq = confirm('Bạn có muốn xóa?');
-						if(kq == true){
-							var id = $(this).data('id');
-							var row = $(this).parents('tr');
-							$.ajax({
-								type:'get',
-								url:'del-type/'+id,
-								success:function(resp){
-									if(resp.error==false)
-									data_table.row(row).remove().draw();
-									else
-										alert(resp.message);
-								}
-							});
-						}
+						$this = $(this);
+						var nd = $(this).parents('tr').find('td:nth-of-type(2)').html();
+						swal({
+							title: "Bạn có muốn xóa không?",
+							text: "Bạn đang xóa muốn "+nd,
+							type: "warning",
+							showCancelButton: true,
+							confirmButtonColor: '#DD6B55',
+							confirmButtonText: 'Có',
+							cancelButtonText: "Không",
+							closeOnConfirm: false,
+							closeOnCancel: false
+						},
+						function(isConfirm){
+							if (isConfirm){
+								var id = $($this).data('id');
+								var row = $($this).parents('tr');
+								$.ajax({
+									type:'get',
+									url:'del-type/'+id,
+									success:function(resp){
+										if(resp.error==false)
+											data_table.row(row).remove().draw();
+										else
+											alert(resp.message);
+									}
+								});
+								swal("Đã xóa!", "Chuyên mục "+nd+" đã xóa thành công!", "success");
+							} else {
+								swal("Đã hủy", "Chuyên mục vẫn giữ nguyên", "error");
+							}
+						});
+
+
+
+
 					});
+
 					$('#add-form').validate({
 						rules:{
 							nametype:{
 								required:true,
+								minlength:5,
+								maxlength:100
 							}
 						},
 						messages:{
 							nametype:{
-								required:"Vui lòng nhập chuyên mục!"
+								required:"Vui lòng nhập chuyên mục!",
+								minlength: "Nhập tối thiểu 5 kí tự"
 							}
-						}
+						},
+						submitHandler: addtype
 					});
 					$('#option-form').validate({
 						rules:{
@@ -223,6 +253,36 @@
 							}
 						}
 					});
+					function addtype(){
+						var data = $('#add-form').serialize();
+						$.ajax({
+							type:'post',
+							url:'add-type',
+							data:data,
+							beforeSend:function(){
+								$('#info').fadeOut();
+							},
+							success:function(resp){
+								if(resp.error==false){
+									swal({
+										title: "Đã thêm thành công!",
+										type: "success",
+
+									},function(isConfirm){
+									if (isConfirm){
+										setTimeout('window.location.href ="",4000');
+									}
+										});
+
+								}else{
+									$("#info").fadeIn(500,function(){
+										$('#info').html(resp.message);
+									});
+								}
+							}
+
+					});
+					}
 				});
 			</script>
-@endsection
+			@endsection

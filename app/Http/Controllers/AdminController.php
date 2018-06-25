@@ -201,16 +201,29 @@ class AdminController extends Controller {
 		return redirect()->back();
 	}
 	public function AddType(Request $request) {
-		try {
-			$hometype = new HomeType();
-			$hometype->nametype = $request->nametype;
-			$hometype->nametypelink = self::changeTitle($request->nametype);
-			$hometype->status = $request->status;
-			$hometype->save();
-			return redirect()->back();
-		} catch (\Exception $ex) {
-			return "Da xay ra loi";
+		$count = HomeType::where('nametype', $request->nametype)->get();
+		if (count($count) == 0) {
+			try {
+				$hometype = new HomeType();
+				$hometype->nametype = $request->nametype;
+				$hometype->nametypelink = self::changeTitle($request->nametype);
+				$hometype->status = $request->status;
+				$hometype->save();
+
+			} catch (\Exception $ex) {
+				return "Da xay ra loi";
+			}
+			return response()->json([
+				'error' => false,
+				'message' => 'success',
+			]);
+		} else {
+			return response()->json([
+				'error' => true,
+				'message' => 'Tên chuyên mục bị trùng!',
+			]);
 		}
+
 	}
 
 	protected function stripUnicode($str) {

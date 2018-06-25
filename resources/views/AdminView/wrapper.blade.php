@@ -33,6 +33,7 @@
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
+  <link rel='stylesheet' href='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css'>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -176,6 +177,7 @@
 
 
 
+
   <footer class="main-footer" style="text-align: center;">
     <strong >Copyright &copy; 2014-2016 <a href="https://adminlte.io">Cao Xuân Mỹ</a>.</strong> Web Developer
   </footer>
@@ -216,7 +218,7 @@
 <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
 <!--Validate-->
 <script type="text/javascript" src="{{asset('js/jquery.validate.min.js')}}"></script>
-
+<script src='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js'></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
 </body>

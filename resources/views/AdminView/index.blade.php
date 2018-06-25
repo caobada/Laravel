@@ -6,12 +6,7 @@
     .imgbox{
     display: grid;
   }
-  img{
-      position: relative;
-      max-width:100%;
-      margin: auto;
-      padding: 0px 15px 0px 15px;
-    }
+
   </style>
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -95,7 +90,10 @@
       <div class="row">
         <!-- Left col -->
         <div class="imgbox">
-  <img src="{{asset('images/welcomadmin.jpg')}}">
+  <img src="{{asset('images/welcomadmin.jpg')}}" style="position: relative;
+      max-width:100%;
+      margin: auto;
+      padding: 0px 15px 0px 15px;">
     </div>
    <!-- /.content -->
 
