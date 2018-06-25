@@ -20,8 +20,13 @@
   .login-social ul {
 
   }
+ 
   .bl-right li{
     padding-left: 10px;
+  }
+  .by-author p{
+    height: 70px;
+    text-overflow: ellipsis;
   }
   .list-home-save{
     display: none;
@@ -97,7 +102,7 @@
 }
 .Item a {
   color: #994f00 !important;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bold;
 }
 
@@ -107,7 +112,7 @@
 
 .media-heading {
   line-height: 18px;
-  font-size: 23px;
+  font-size: 13px;
 
   text-transform: uppercase;
 }

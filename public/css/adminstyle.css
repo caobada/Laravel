@@ -10,7 +10,16 @@
     position:relative;
     
 }
+ #thumb:hover .small-box{
+   opacity: 0.4;
+   cursor: pointer;
 
+  }
+.small-box:hover{
+      opacity: 1 !important;
+       transform: scale(1.09);
+       transition: all 0.5s ease;
+  }
 .slider {
     position:absolute;
     top:0;

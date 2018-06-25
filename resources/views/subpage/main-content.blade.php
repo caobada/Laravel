@@ -47,7 +47,8 @@ if ($var[1] == 1) {
                                 <div class="location"><b>{{$top6post->districted->type}} {{$top6post->districted->name}}, {{$top6post->province->name}}</b></div>
                             </div>
                             <div class="by-author"><p >
-                                <?php
+                            {!!strip_tags($top6post->desc)!!}
+<!--                                 <?php
 $lenght = str_word_count($top6post->desc);
 if ($lenght > 40) {
 	echo strip_tags(substr($top6post->desc, 0, 120)) . '...';
@@ -55,7 +56,7 @@ if ($lenght > 40) {
 	echo strip_tags($top6post->desc);
 }
 
-?>
+?> -->
                             </p></div>
                         </div>
                     </div>

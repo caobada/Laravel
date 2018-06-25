@@ -377,15 +377,11 @@
 
 		$('#province').on('change',function(){
 			var provinceid = $(this).val();
-			var href = window.location.href;
-			var array = href.split("/");
-			var len = array.length
-			if(len==6) url = 'province/'+ provinceid;
-			else url = '../province/'+ provinceid
+			url ="{{url('province')}}";
 				if(provinceid=="") provinceid=0;
 			$.ajax({
 				type: 'GET',
-				url : url ,
+				url : url+"/"+provinceid ,
 				success:function(resp){
 					$("#district").html(resp);
 
