@@ -24,7 +24,7 @@
   .bl-right li{
     padding-left: 10px;
   }
-  .by-author p{
+  .by-author {
     height: 70px;
     text-overflow: ellipsis;
   }
@@ -58,16 +58,8 @@
   left: 10px;
 
 }
-.img-save{
-  transition: all 1s ease;
-  animation: heart 1.5s;
-}
-@keyframes heart {
-  0%   {transform: scale(0.4)}
-  25%  {transform: scale(1)}
-  70%  {transform: scale(1)}
-  100% {transform: scale(0.4)}
-}
+
+
 .save-home .btn-success{
   background-color: #1ABC9C !important;
 }

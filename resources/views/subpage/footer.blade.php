@@ -2,7 +2,7 @@
 	<div class="footer">
 			<div class="container">
 				<div class="col-md-4" >
-					<h2>Giới thiệu</h2>
+					<h3>GIỚI THIỆU</h3>
 					<p>FindHomeD. là trang web tìm kiếm phòng trọ uy tín và số người truy cập nhiều nhất Việt Nam. Với mong muốn tạo ra môi trường rộng lớn cho nhu cầu tìm kiếm nơi ăn ở cũng như nơi làm việc cho tất cả mọi người trên toàn quốc.</p>
 
 					<ul class="social-network">
@@ -14,7 +14,7 @@
 				</div>
 
 				<div class="col-md-4 linkstype">
-					<h3>Truy tìm mục</h3>
+					<h3>DANH MỤC THUÊ</h3>
 					<ul>
 						@foreach($hometype as $footer)
 						<li><a href='{{url("type/$footer->nametypelink")}}'>{{$footer->nametype}}</a></li>

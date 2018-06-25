@@ -140,10 +140,14 @@
 											<span class="badge ">Khoảng giá</span>
 											<select id="price" class="form-control " name="price">
 												<option value="">Tất cả</option>
-												<option value="1">Dưới 1 triệu</option>
-												<option value="2">Từ 1->2 triệu</option>
-												<option value="3">Từ 2->5 triệu</option>
-												<option value="4">Trên 5 triệu</option>
+												<option <?php if (isset($_GET['price'])) {if ($_GET['price'] == 1) {echo "selected='selected'";}}?>
+												 value="1">Dưới 1 triệu</option>
+												<option <?php if (isset($_GET['price'])) {if ($_GET['price'] == 2) {echo "selected='selected'";}}?>
+												value="2">Từ 1->2 triệu</option>
+												<option
+												<?php if (isset($_GET['price'])) {if ($_GET['price'] == 3) {echo "selected='selected'";}}?> value="3">Từ 2->5 triệu</option>
+												<option <?php if (isset($_GET['price'])) {if ($_GET['price'] == 4) {echo "selected='selected'";}}?>
+												 value="4">Trên 5 triệu</option>
 											</select>
 										</div>
 										<!-- Diện tích -->
