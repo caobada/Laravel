@@ -2,10 +2,10 @@
 
 @section('content')
 <style type="text/css">
-	#info{
-		color:red;
+#info{
+	color:red;
 
-	}
+}
 </style>
 <section class="content-header">
 	<h1>
@@ -202,13 +202,14 @@
 									type:'get',
 									url:'del-type/'+id,
 									success:function(resp){
-										if(resp.error==false)
+										if(resp.error==false){
 											data_table.row(row).remove().draw();
-										else
-											alert(resp.message);
+											swal("Đã xóa!", "Chuyên mục "+nd+" đã xóa thành công!", "success");
+										}else
+										swal("Lỗi",resp.message, "error");
 									}
 								});
-								swal("Đã xóa!", "Chuyên mục "+nd+" đã xóa thành công!", "success");
+
 							} else {
 								swal("Đã hủy", "Chuyên mục vẫn giữ nguyên", "error");
 							}
@@ -269,10 +270,10 @@
 										type: "success",
 
 									},function(isConfirm){
-									if (isConfirm){
-										setTimeout('window.location.href ="",4000');
-									}
-										});
+										if (isConfirm){
+											setTimeout('window.location.href ="",4000');
+										}
+									});
 
 								}else{
 									$("#info").fadeIn(500,function(){
@@ -281,7 +282,7 @@
 								}
 							}
 
-					});
+						});
 					}
 				});
 			</script>

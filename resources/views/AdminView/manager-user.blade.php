@@ -149,9 +149,9 @@
 		<script type="text/javascript">
 
 			$(function(){
-					jQuery.validator.addMethod("phonevn", function(value, element) {
-						return this.optional(element) || /^(09|01[2|6|8|9])+([0-9]{8})/.test(value);
-					}, "Số điện thoại không hợp lệ!");
+				jQuery.validator.addMethod("phonevn", function(value, element) {
+					return this.optional(element) || /^(09|01[2|6|8|9])+([0-9]{8})/.test(value);
+				}, "Số điện thoại không hợp lệ!");
 					// Off toggle of button has disabled
 					$(".option[disabled]").removeAttr('data-toggle');
 					var curr = '<?php echo Auth::user()->id ?>';
@@ -196,26 +196,66 @@
 					//xoa tai khoan
 
 					$(document).on('click','.del-account',function(){
-						var kq = confirm('Bạn có muốn xóa tài khoản này?');
-						if(kq == true ){
-							var id = $(this).data('id');
-							var row = $(this).parents('tr');
-							if(id == curr){
-								alert('Bạn không thể xóa tài khoản chính bạn!');
-							}else{
-								$.ajax({
+						$this = $(this);
+						swal({
+							title: "Bạn có muốn xóa tài khoản này?",
+							text: "Nếu xóa tài khoản sẽ mất đi vĩnh viễn!",
+							type: "warning",
+							showCancelButton: true,
+							confirmButtonColor: '#DD6B55',
+							confirmButtonText: 'Có',
+							cancelButtonText: "Không",
+							closeOnConfirm: false,
+							closeOnCancel: false
+						},
+						function(isConfirm){
+							if (isConfirm){
+								var id = $($this).data('id');
+								var row = $($this).parents('tr');
+								if(id == curr){
+									swal("Lỗi","Bạn không thể xóa tài khoản chính bạn!", "error");
+								}else{
+									$.ajax({
 									type:'get',
 									url:'del-account/'+id,
 									success:function(resp){
-										if(resp.error==true){
-											alert(resp.message);
-										}else{
-											data_table.row(row).remove().draw();
+											if(resp.error==false){
+												data_table.row(row).remove().draw();
+												swal("Đã xóa!", "Tài khoản người dùng đã xóa thành công!", "success");
+											}else
+											swal("Lỗi",resp.message, "error");
 										}
-									}
-								});
+									});
+								}
+
+							} else {
+								swal("Đã hủy", "Tài khoản người dùng vẫn giữ nguyên", "error");
 							}
-						}
+						});
+
+
+
+						// if(kq == true ){
+						// 	var id = $(this).data('id');
+						// 	var row = $(this).parents('tr');
+						// 	if(id == curr){
+						// 		swal("Lỗi","Bạn không thể xóa tài khoản chính bạn!", "error");
+
+						// 	}else{
+						// 		$.ajax({
+						// 			type:'get',
+						// 			url:'del-account/'+id,
+						// 			success:function(resp){
+						// 				if(resp.error==true){
+						// 					alert(resp.message);
+						// 				}else{
+						// 					data_table.row(row).remove().draw();
+						// 				}
+						// 			}
+						// 		});
+						// 	}
+						// }
+
 					});
 					// Toogle doi password
 					$('#change-pass').click(function(){

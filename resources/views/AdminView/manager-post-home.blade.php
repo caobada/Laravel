@@ -16,7 +16,7 @@
 	<div class="row">
 		<div class="col-xs-12 col-md-12 col-12">
 			<div class="box">
-			<!-- /.box-header -->
+				<!-- /.box-header -->
 				<div class="box-body table-responsive">
 					<table id="manahome" class="table table-bordered table-striped">
 						<thead>
@@ -88,12 +88,12 @@ if ($var[1] == 1) {
 <script type="text/javascript">
 
 	$(function(){
-			var data_table = $('#manahome').DataTable({
-		"order": [[ 0, "desc" ]],
+		var data_table = $('#manahome').DataTable({
+			"order": [[ 0, "desc" ]],
 
-			});
+		});
 
-			$(document).on('change','.check',function(){
+		$(document).on('change','.check',function(){
 			var val;
 			var id = $(this).data('id');
 			if($(this).parent('.toggle ').hasClass('off')){
@@ -110,25 +110,39 @@ if ($var[1] == 1) {
 			});
 		});
 
-			$(document).on('click','.del-home',function(){
-			var kq = confirm('Bạn có muốn xóa bài này?');
-			if(kq==true){
-				var id = $(this).data('id');
-				var row = $(this).parents('tr');
-				$.ajax({
-					type:'get',
-					url: 'del-home/'+id,
-					success:function(resp){
-						if(resp.error == false){
-							data_table.row(row).remove().draw();
+		$(document).on('click','.del-home',function(){
+			$this = $(this);
+			swal({
+				title: "Bạn có muốn xóa không?",
+				text: "Xóa bài đăng sẽ mất vĩnh viễn?",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: '#DD6B55',
+				confirmButtonText: 'Có',
+				cancelButtonText: "Không",
+				closeOnConfirm: false,
+				closeOnCancel: false
+			},
+			function(isConfirm){
+				if (isConfirm){
+					var id = $($this).data('id');
+					var row = $($this).parents('tr');
+					$.ajax({
+						type:'get',
+						url: 'del-home/'+id,
+						success:function(resp){
+							if(resp.error==false){
+								data_table.row(row).remove().draw();
+								swal("Đã xóa!", "Bài đăng đã xóa thành công!", "success");
+							}else
+							swal("Lỗi",resp.message, "error");
 						}
-					}
-				});
-			}
-
+					});
+				} else {
+					swal("Đã hủy", "Bài đăng vẫn giữ nguyên", "error");
+				}
+			});
 		});
-
 	});
-
 </script>
 @endsection
