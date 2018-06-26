@@ -17,7 +17,7 @@
 	<link href="{{asset('css/select2.min.css')}}" rel="stylesheet" />
 	<link href="{{asset('file_upload/fileinput.min.css')}}">
 	<link rel="stylesheet" href="{{asset('css/style.css')}}">
-	<link rel="stylesheet" href="{{asset('css/mystyle.css')}}">
+	<link rel="stylesheet" href="{{asset('dist/css/mystyle.min.css')}}">
 
 	<style type="text/css">
 	*{
@@ -33,7 +33,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-12 text-right">
-							<p class="num">Call: +0961467216</p>
+							<p class="num"><a href="tel:+84961467216">Call: +0961467216</a></p>
 							<ul class="fh5co-social">
 								@if(Auth::check())
 								<p><span class="title">Xin chào {{Auth::user()->username}}</span> |||<a id="logout" href="{{route('logout')}}"><i class="fa fa-sign-out"></i></a></p>
