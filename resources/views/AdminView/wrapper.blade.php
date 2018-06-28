@@ -179,7 +179,7 @@
 
 
   <footer class="main-footer" style="text-align: center;">
-    <strong >Copyright &copy; 2014-2016 <a href="https://adminlte.io">Cao Xuân Mỹ</a>.</strong> Web Developer
+    <strong >Copyright &copy; 2014-<?php echo date('Y') ?> <a href="https://adminlte.io">Cao Xuân Mỹ</a>.</strong> Web Developer
   </footer>
 
 <div class="control-sidebar-bg"></div>

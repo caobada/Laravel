@@ -540,7 +540,7 @@ function initializeMap(){
 
         markerdragEvent(markers);
         map.fitBounds(bounds);
-        console.log( places );
+
     });
 
     // Add marker when click on map
@@ -569,7 +569,7 @@ function initializeMap(){
     google.maps.event.addListener(map, 'center_changed', function() {
         $("#" + mapCenLat).val(map.getCenter().lat());
         $("#" + mapCenLng).val(map.getCenter().lng());
-        console.log( map.getCenter() );
+
     });
 }
 
