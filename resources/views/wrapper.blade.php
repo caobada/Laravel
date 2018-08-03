@@ -14,6 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('css/animate.css')}}">
 	<link rel="stylesheet" href="{{asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
 	<!--select 2-->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 	<link href="{{asset('css/select2.min.css')}}" rel="stylesheet" />
 	<link href="{{asset('file_upload/fileinput.min.css')}}">
 	<link rel="stylesheet" href="{{asset('css/style.css')}}">
@@ -335,7 +336,7 @@
 					minlength:"Tên đăng nhập tối thiểu 5 kí tự!"
 				},
 				password:{
-					required:"Yêu cầu nhập tên đăng nhập!",
+					required:"Yêu cầu nhập mật khẩu!",
 					minlength:"Mật khẩu tối thiểu 5 kí tự!"
 				}
 			},

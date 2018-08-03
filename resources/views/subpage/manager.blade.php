@@ -1,10 +1,19 @@
 @extends('wrapper')
 @section('title','Quản lý bài đăng')
 @section('content')
+<style type="text/css">
+		.drop-home{
+			cursor: pointer;
+		}
+		.manager-post{
+			margin-left: 100px;
+			margin-right: 100px;
+		}
 
-<div class="container" style="margin-top: 20px;">
-	<div class="row">
-		<div class="col-md-12">
+</style>
+<div class="manager-post">
+	<div class="row" style="text-align: center; margin:aut;padding: auto;">
+
 			<table id="table_id" class="display">
 
 
@@ -42,9 +51,9 @@ if ($var[1] == 1) {
 						@endforeach
 					</tbody>
 				</table>
-			</div>
-		</div>
+
 	</div>
+</div>
 	@endsection
 
 	@section('script')
@@ -64,7 +73,8 @@ if ($var[1] == 1) {
 				'autoWidth'   : true
 
 			});
-			$(".drop-home").click(function(){
+
+				$(document).on('click','.drop-home',function(){
 				var kq = confirm('Bạn có muốn xóa?');
 				if(kq == true){
 				var id = $(this).data('id');

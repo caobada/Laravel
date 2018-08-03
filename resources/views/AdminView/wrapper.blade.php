@@ -154,7 +154,7 @@
             <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i>Trang bìa</a></li>
             <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i>Tên Logo</a></li>
             <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Quảng cáo </a></li>
-            <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Liên hệ </a></li>
+            <li><a href="{{url('admin/lien-he')}}"><i class="fa fa-circle-o"></i> Liên hệ ({{$unread}})</a></li>
           </ul>
         </li>
 

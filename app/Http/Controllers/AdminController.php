@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Contact;
 use App\Home;
 use App\HomeType;
 use App\Role;
@@ -10,13 +11,20 @@ use Entrust;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\View;
 
 class AdminController extends Controller {
 	//
+	protected $contact_unread;
+	public function __construct() {
+		$contact_unread = Contact::where('read', 0)->count();
+		View::share('unread', $contact_unread);
+	}
 	public function index() {
 		$user = User::all();
 		$item_duyet = Home::where('view', 0)->get();
 		$home = Home::all();
+
 		$hometype = HomeType::all();
 		return view('AdminView.index', ['user' => $user, 'item' => $item_duyet, 'home' => $home, 'hometype' => $hometype]);
 	}

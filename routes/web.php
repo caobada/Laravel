@@ -57,7 +57,7 @@ Route::get('admin/dang-nhap', 'AdminController@Login');
 Route::post('admin/dang-nhap', 'AdminController@PostLogin');
 //contact
 Route::get('lien-he', 'ShowController@Contact');
-
+Route::post('lien-he', 'ContactController@index');
 // Admin page
 Route::group(['prefix' => 'admin', 'middleware' => 'adminmiddleware'], function () {
 	Route::get('/', 'AdminController@index');
@@ -74,4 +74,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminmiddleware'], function 
 	Route::post('option-type', 'AdminController@PostOptionType');
 	Route::post('add-type', 'AdminController@AddType');
 	Route::get('del-type/{id}', 'AdminController@DelType');
+	Route::get('lien-he', 'ContactController@Contact');
 });
