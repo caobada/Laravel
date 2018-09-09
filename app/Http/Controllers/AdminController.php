@@ -17,7 +17,7 @@ class AdminController extends Controller {
 	//
 	protected $contact_unread;
 	public function __construct() {
-		$contact_unread = Contact::where('read', 0)->count();
+		$contact_unread = Contact::where('readed', 0)->count();
 		View::share('unread', $contact_unread);
 	}
 	public function index() {
@@ -47,7 +47,7 @@ class AdminController extends Controller {
 			if (count($id) > 0) {
 				foreach ($id as $key => $value) {
 					$data = Home::select('home_id', 'title')->where('home_id', $value)->get();
-					echo '<li><a href=http://localhost/FindHomeD/detail/' . $data[0]->home_id . '>' . $data[0]->title . '</a></li>';
+					echo '<li><a href=http://localhost/Laravel/detail/' . $data[0]->home_id . '>' . $data[0]->title . '</a></li>';
 
 				}
 			} else {

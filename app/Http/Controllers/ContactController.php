@@ -12,7 +12,7 @@ class ContactController extends Controller {
 	//
 	protected $contact_unread;
 	public function __construct() {
-		$contact_unread = Contact::where('read', 0)->count();
+		$contact_unread = Contact::where('readed', 0)->count();
 		View::share('unread', $contact_unread);
 	}
 	public function index(Request $request) {
@@ -34,7 +34,7 @@ class ContactController extends Controller {
 					'hoten' => $request->name,
 					'email' => $request->email,
 					'contents' => $request->content,
-					'read' => 0,
+					'readed' => 0,
 				];
 				$commit = Contact::insert($new_contact);
 				if ($commit) {

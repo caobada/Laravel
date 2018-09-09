@@ -9,7 +9,7 @@ class SearchController extends Controller {
 	protected $Menu;
 	//
 	public function __construct() {
-		$this->Menu = HomeType::all();
+		$this->Menu = HomeType::where('status',1)->get();
 		$this->province = Province::orderBy('name', 'ASC')->get();
 	}
 	public function Search() {

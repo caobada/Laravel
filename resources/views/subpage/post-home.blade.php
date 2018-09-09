@@ -219,7 +219,7 @@
                                     <font>thông tin mô tả</font>
                                 </div>
                                 <div class="reg-info">
-                                    <p class="bg-success-info">Giới thiệu mô tả về tin đăng của bạn. Ví dụ: Khu nhà có vị trí thuận lợi: Gần công viên, gần trường học ... Tổng diện tích 52m2, đường đi ô tô vào tận cửa.</p>
+                                    <p class="bg-success-info">Giới thiệu mô tả về tin đăng của bạn. Càng kĩ càng thì chất lượng bài đăng càng tốt. Ví dụ: Khu nhà có vị trí thuận lợi: Gần công viên, gần trường học, số người, gần đường hay trong hẻm ngõ ... Tổng diện tích 52m2, đường đi ô tô vào tận cửa.</p>
 
                                     <div class="form-group ">
                                         <div class="row ">
@@ -285,7 +285,9 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
-
+        jQuery.validator.addMethod("phonevn", function(value, element) {
+            return this.optional(element) || /^(09|01[2|6|8|9])+([0-9]{8})/.test(value);
+        }, "Số điện thoại không hợp lệ!");
         $('#province2').select2();
         $('#district2').select2();
         $('#ward').select2();
@@ -307,15 +309,19 @@
                     required:true,
                     minlength:10,
                     maxlength:11,
+                    phonevn:true,
                     number:true
 
                 },
                 price:{
                     required:true,
+                    number:true,
+                    min:0,
                     maxlength:9
                 },
                 area:{
                     required:true,
+                    min:0,
                     number:true
 
                 },
@@ -353,13 +359,17 @@
                     number:"Số điện thoại không hợp lệ!"
 
                 },
+
                 price:{
                     required:"Xin vui lòng nhập giá tiền!",
-                    maxlength:"Giá trị không quá tiền trăm triệu!"
+                    maxlength:"Giá trị không quá tiền trăm triệu!",
+                    min:"Vui lòng nhập số hợp lệ",
+                    number:"Vui lòng nhập số hợp lệ"
                 },
                 area:{
                     required:"Vui lòng nhập diện tích!",
-                    number:"Vui lòng nhập số!"
+                    min:"Vui lòng nhập số hợp lệ",
+                    number:"Vui lòng nhập số hợp lệ"
 
                 },
                 province:{
